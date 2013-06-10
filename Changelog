@@ -9,5 +9,5 @@ Changelog
 - changed the orginal behavor that the PID shows "?" to the actual PID. It may be a issue caused by reading the /proc/net/tcp earlier than expected.
 
 2013/05/25 (tonyzzt)
-- Developed based on nethogs.
+- Developed based on nethogs nethogs project https://github.com/deployfu/nethogs. 
 - Packet sent/recv display

@@ -4,7 +4,9 @@ https://github.com/tonyzzt/iop
 
 == INTRODUCTION ==
 
-iop is a advanced 'net top' tool developerd based on nethogs project https://github.com/deployfu/nethogs. 
+iop is a advanced 'net top' tool developerd based on nethogs https://github.com/deployfu/nethogs. 
+
+'libpcap-dev' and 'libpcap' packages are required to compile this project.
 
 == LICENSE ==
 
