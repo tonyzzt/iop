@@ -1,0 +1,13 @@
+Changelog
+
+2013/06/10 (tonyzzt)
+- support more switch:
+	-e : emtpy output mode. It does not show any data in UI, usually combine use with -r or -s switch
+	-p : only list the select process by PID.
+	-r : recording the process data realtime (ONLY the last second) to file .
+	-s : recording the process data for a long run to a file.
+- changed the orginal behavor that the PID shows "?" to the actual PID. It may be a issue caused by reading the /proc/net/tcp earlier than expected.
+
+2013/05/25 (tonyzzt)
+- Developed based on nethogs.
+- Packet sent/recv display
