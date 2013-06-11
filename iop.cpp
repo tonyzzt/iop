@@ -34,6 +34,8 @@ extern "C" {
 #include "refresh.h"
 #include "devices.h"
 
+#include "CSVFileWriter.h"
+
 extern Process * unknownudp;
 extern ConnList* connections;
 
@@ -52,7 +54,6 @@ bool emptyMode = false;
 bool processMode = false;
 char* strPIDs;
 vector<int> vPIDs;
-
 
 //packet_type packettype = packet_ethernet;
 //dp_link_type linktype = dp_link_ethernet;
@@ -300,6 +301,7 @@ int main (int argc, char** argv)
 
 	int opt;
 	char seps[] = ","; 
+	CSVFileWriter csvFileWriter;
 	while ((opt = getopt(argc, argv, "Vhbtced:r:s:p:")) != -1) {
 		switch(opt) {
 			case 'V':
@@ -326,11 +328,27 @@ int main (int argc, char** argv)
 				needrecord_filename = strdup(optarg);
 				needrecord = true;
 				std::cout << "Saving proc io date (realtime) to: "<<  needrecord_filename <<endl;	
+				//generete the physical file even no record captured
+				csvFileWriter.Open(needrecord_filename);
+				csvFileWriter.WriteString("PID",4);
+				csvFileWriter.WriteString("SENT",5);
+				csvFileWriter.WriteString("RECEIVED",9);
+				csvFileWriter.WriteString("PK_SENT",8);
+				csvFileWriter.WriteString("PK_RECEIVED",12);		
+				csvFileWriter.WriteString("PROGRAM",8);	
+				csvFileWriter.Close();
 				break;
 			case 's':				
 				needlongsave_filename = strdup(optarg);
 				needlongsave = true;
-				std::cout << "Saving proc io date to: "<<  needlongsave_filename <<endl;				
+				std::cout << "Saving proc io date to: "<<  needlongsave_filename <<endl;		
+				csvFileWriter.Open(needrecord_filename);
+				csvFileWriter.WriteString("PID",4);
+				csvFileWriter.WriteString("SENT",5);
+				csvFileWriter.WriteString("RECEIVED",9);
+				csvFileWriter.WriteString("PK_SENT",8);
+				csvFileWriter.WriteString("PK_RECEIVED",12);					
+				csvFileWriter.Close();
 				break;	
 			case 'p':				
 				strPIDs = strdup(optarg);	

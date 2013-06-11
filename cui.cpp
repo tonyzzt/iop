@@ -593,13 +593,20 @@ void do_refresh() //
 
 	if (needrecord)
 	{
-		//char pathName[ZT_MAX_PATH] = "test1.csv";		
-		writerCSV.Open( needrecord_filename);		
+		//char pathName[ZT_MAX_PATH] = "test1.csv";	
+		writerCSV.Open( needrecord_filename);	 //w+t, rewrite the file
+		writerCSV.WriteString("PID",4);
+		writerCSV.WriteString("SENT",5);
+		writerCSV.WriteString("RECEIVED",9);
+		writerCSV.WriteString("PK_SENT",8);
+		writerCSV.WriteString("PK_RECEIVED",12);	
+		writerCSV.WriteString("PROGRAM",8);	
+		writerCSV.NextLine();	
 	}
 
 	if (needlongsave)
 	{
-		writerCSVlongsave.OpenA( needlongsave_filename);		
+		writerCSVlongsave.OpenA( needlongsave_filename);
 	}
 	
 
