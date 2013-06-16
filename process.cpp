@@ -194,6 +194,13 @@ Process * getProcess (unsigned long inode, const char * devicename)
 	//ex. iop -pn tconnd,tbusd
 	//if (node->pid != 27133) return NULL; 
 
+	if (node == NULL)
+	{
+		if (DEBUG || bughuntmode)
+			std::cout << "No PID information for inode " << inode << std::endl;
+		return unknowntcp;
+	}
+
 	if (processMode == true) //requested PIDs by user
 	{
 		vector<int>::iterator requestedPID = find(vPIDs.begin(),vPIDs.end(),node->pid);	
@@ -203,14 +210,6 @@ Process * getProcess (unsigned long inode, const char * devicename)
 			return NULL;
 		}
 	}
-
-	if (node == NULL)
-	{
-		if (DEBUG || bughuntmode)
-			std::cout << "No PID information for inode " << inode << std::endl;
-		return unknowntcp;
-	}
-
 
 	//cout << "getProcess: node->pid=" << node->pid <<endl;
 
